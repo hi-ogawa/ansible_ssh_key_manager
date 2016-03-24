@@ -1,0 +1,17 @@
+---
+- hosts: odigo_thai_web odigo_thai_db odigo_thai_staging
+  user: ubuntu
+  become: true
+  tasks:
+    - authorized_key: user=ubuntu key="{{ item }}"
+      with_file:
+        - public_keys/hiroshi
+        - public_keys/john
+
+- hosts: new_planner_api
+  user: ubuntu
+  become: true
+  tasks:
+    - authorized_key: user=ubuntu key="{{ item }}"
+      with_file:
+        - public_keys/hiroshi

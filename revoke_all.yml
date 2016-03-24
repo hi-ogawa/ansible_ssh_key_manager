@@ -1,0 +1,8 @@
+---
+- hosts: all
+  user: ubuntu
+  become: true
+  tasks:
+    - authorized_key: user=ubuntu key="{{ item }}" exclusive=yes
+      with_file:
+        - public_keys/hiroshi
